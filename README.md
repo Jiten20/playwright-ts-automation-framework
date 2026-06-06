@@ -3,6 +3,7 @@
 ![Playwright Tests](https://img.shields.io/badge/Playwright-Automation-brightgreen)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)
 ![CI/CD](https://img.shields.io/badge/GitHub_Actions-CI%2FCD-orange)
+![Playwright Tests](https://github.com/Jiten20/playwright-ts-automation-framework/actions/workflows/playwright.yml/badge.svg)
 
 A scalable End-to-End (E2E) automation framework built using **Playwright** and **TypeScript**, following industry-standard automation practices such as **Page Object Model (POM)**, **Custom Fixtures**, **Test Tagging**, **Reporting**, and **GitHub Actions CI/CD**.
 
