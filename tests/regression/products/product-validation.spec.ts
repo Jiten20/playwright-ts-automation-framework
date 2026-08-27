@@ -1,5 +1,6 @@
 import { test, expect } from '../../../fixtures/baseTest';
-import { testData } from '../../../test-data/testData';
+import { users } from '../../../test-data/users';
+import { productDetails } from '../../../test-data/products';
 
 test.describe('Product Validation', () => {
     test.beforeEach(async ({ loginPage }) => {
@@ -7,24 +8,24 @@ test.describe('Product Validation', () => {
     })
 
     test('@critical Verify Product page is displayed', async ({ loginPage, productsPage }) => {
-        await loginPage.login(testData.users.valid.username,
-            testData.common.password);
+        await loginPage.login(users.valid.username,
+            users.common.password);
         await productsPage.verifyProductsPage();
     });
 
     test('@regression Verify six products are displayed', async ({ loginPage, productsPage }) => {
-        await loginPage.login(testData.users.valid.username,
-            testData.common.password);
+        await loginPage.login(users.valid.username,
+            users.common.password);
         await productsPage.verifyProductCount();
 
     })
 
     test('@regression Add multiple products and verify cart count', async ({ loginPage, productsPage }) => {
-        await loginPage.login(testData.users.valid.username,
-            testData.common.password);
+        await loginPage.login(users.valid.username,
+            users.common.password);
         const products = [
-            testData.productDetails.backpack.name,
-            testData.productDetails.bikeLight.name
+            productDetails.backpack.name,
+            productDetails.bikeLight.name
         ]
         for (const product of products) {
             await productsPage.addProductToCart(product);

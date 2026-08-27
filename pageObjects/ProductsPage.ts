@@ -9,10 +9,7 @@ export class ProductsPage {
   readonly sortProducts: Locator;
   readonly productPrices: Locator;
   readonly cartBadge: Locator;
-  readonly allItemsLink: Locator;
-  readonly aboutLink: Locator;
-  readonly logoutLink: Locator;
-  readonly resetAppLink: Locator;
+  readonly productImages: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -23,10 +20,8 @@ export class ProductsPage {
     this.sortProducts = page.locator('.product_sort_container');
     this.productPrices = page.locator('[data-test="inventory-item-price"]');
     this.cartBadge = page.locator('.shopping_cart_badge');
-    this.allItemsLink = page.locator('[data-test="inventory-sidebar-link"]');
-    this.aboutLink = page.locator('[data-test="about-sidebar-link"]');
-    this.logoutLink = page.locator('[data-test="logout-sidebar-link"]');
-    this.resetAppLink = page.locator('[data-test="reset-sidebar-link"]');
+    this.productImages = page.locator('[data-test="inventory-item"] img');
+
   }
   async verifyProductsPage() {
     await expect(this.title).toHaveText('Products');
@@ -34,22 +29,6 @@ export class ProductsPage {
 
   async verifyProductCount() {
     await expect(this.productCount).toHaveCount(6);
-  }
-
-  async verifyAllitems() {
-    await this.allItemsLink.click();
-  }
-
-  async verifyAbout() {
-    await this.aboutLink.click();
-  }
-
-  async verifyLogOut() {
-    await this.logoutLink.click();
-  }
-
-  async resetApp() {
-    await this.resetAppLink.click();
   }
 
   async addProductToCart(productName: string) {
@@ -65,7 +44,13 @@ export class ProductsPage {
   }
 
   async verifyCartCount(expectedCount: number) {
-    await expect(this.cartBadge).toHaveText(String(expectedCount));
+    if (expectedCount === 0) {
+      await expect(this.cartBadge).not.toBeVisible();
+    }
+    else {
+      await expect(this.cartBadge)
+        .toHaveText(String(expectedCount));
+    }
 
   }
 
@@ -91,5 +76,17 @@ export class ProductsPage {
     }
 
     await expect(this.cartBadge).toHaveText(String(addedCount));
+  }
+
+  /**
+ * Validates that each product has a unique image.
+ * Problem_user displays the same image for all products,
+ * so this check compares total images against unique image count.
+ */
+  async verifyProductImages() {
+
+    const images = await this.productImages.evaluateAll(img => img.map(img => img.getAttribute('src')));
+    const uniqueimages = new Set(images);
+    expect(uniqueimages.size).toBe(images.length);
   }
 }
