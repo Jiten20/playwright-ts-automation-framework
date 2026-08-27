@@ -18,8 +18,8 @@ test('@smoke Validate Product order', async ({
     });
 
     await test.step('Add product to cart', async () => {
-        await productsPage.addProductToCart(testData.productDetails.name);
-        await productsPage.selectAddToCartLink();
+        await productsPage.addProductToCart(testData.productDetails.backpack.name);
+        await productsPage.openCart();
     });
 
     await test.step('Checkout product', async () => {

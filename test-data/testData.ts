@@ -31,8 +31,15 @@ export const testData = {
 
   },
   productDetails: {
-    name: 'Sauce Labs Backpack',
-    price: 29.99
+    backpack: {
+      name: 'Sauce Labs Backpack',
+      price: '$29.99'
+    },
+
+    bikeLight: {
+      name: 'Sauce Labs Bike Light',
+      price: '$9.99'
+    }
   },
   checkoutDetails: {
     firstName: 'John',
