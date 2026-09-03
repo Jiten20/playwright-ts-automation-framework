@@ -1,5 +1,7 @@
 import { test, expect } from '../../fixtures/baseTest';
-import { testData } from '../../test-data/testData';
+import { users } from '../../test-data/users';
+import { productDetails } from '../../test-data/products';
+import { checkoutDetails } from '../../test-data/checkout';
 
 test('@smoke Validate Product order', async ({
     loginPage,
@@ -11,23 +13,23 @@ test('@smoke Validate Product order', async ({
     await test.step('Login with valid user', async () => {
         await loginPage.navigate();
         await loginPage.login(
-            testData.users.valid.username,
-            testData.common.password
+            users.valid.username,
+            users.common.password
         );
         await productsPage.verifyProductsPage();
     });
 
     await test.step('Add product to cart', async () => {
-        await productsPage.addProductToCart(testData.productDetails.backpack.name);
+        await productsPage.addProductToCart(productDetails.backpack.name);
         await productsPage.openCart();
     });
 
     await test.step('Checkout product', async () => {
         await cartPage.selectCheckout();
         await checkoutPage.fillCheckoutDetails(
-            testData.checkoutDetails.firstName,
-            testData.checkoutDetails.lastName,
-            testData.checkoutDetails.postalCode
+            checkoutDetails.firstName,
+            checkoutDetails.lastName,
+            checkoutDetails.postalCode
         );
         await checkoutPage.clickContinue();
         await checkoutPage.clickFinish();
