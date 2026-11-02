@@ -18,6 +18,7 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     trace: 'retain-on-failure',
     video: 'retain-on-failure',
-    headless: true
+    headless: true,
+    testIdAttribute: 'data-test'
   }
 });

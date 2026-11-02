@@ -15,7 +15,7 @@ export class CheckoutPage {
         this.postalCode = page.getByPlaceholder('Postal Code');
         this.continueBtn = page.getByRole('button', { name: 'Continue' });
         this.finishBtn = page.getByRole('button', { name: 'Finish' });
-        this.checkoutCompleteMsg = page.locator('.complete-header');
+        this.checkoutCompleteMsg = page.getByTestId('complete-header');
     }
 
     async fillCheckoutDetails(firstName: string, lastName: string, postalCode: string) {

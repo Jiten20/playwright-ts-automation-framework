@@ -12,7 +12,7 @@ export class LoginPage {
     this.username = page.getByPlaceholder('Username');
     this.password = page.getByPlaceholder('Password');
     this.loginBtn = page.getByRole('button', { name: 'Login' });
-    this.errorMsg = page.locator('[data-test="error"]')
+    this.errorMsg = page.getByTestId('error')
   }
   async navigate() {
     await this.page.goto('/');

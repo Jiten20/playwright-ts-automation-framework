@@ -13,13 +13,13 @@ export class ProductsPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.title = page.locator('.title');
-    this.selectProduct = page.locator('.inventory_item');
+    this.title = page.getByTestId('title');
+    this.selectProduct = page.getByTestId('inventory-item');
     this.productCount = page.locator('[data-test="inventory-item"]');
-    this.cartLink = page.locator('.shopping_cart_link');
-    this.sortProducts = page.locator('.product_sort_container');
-    this.productPrices = page.locator('[data-test="inventory-item-price"]');
-    this.cartBadge = page.locator('.shopping_cart_badge');
+    this.cartLink = page.getByTestId('shopping-cart-link');
+    this.sortProducts = page.getByTestId('product-sort-container');
+    this.productPrices = page.getByTestId('inventory-item-price');
+    this.cartBadge = page.getByTestId('shopping-cart-badge');
     this.productImages = page.locator('[data-test="inventory-item"] img');
 
   }
